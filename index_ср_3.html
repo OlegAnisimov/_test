@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ch_3_functions</title>
+    <style>
+        #results li.pass {
+            color: green;
+        }
+
+        #results li.fail {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<ul id="results"></ul>
+
+<!-- service debug functions-->
+<script>
+    function report(message) {
+        console.log(message);
+    }
+
+    function assert(value, desc) {
+        let li = document.createElement("li");
+        li.className = value ? "pass" : "fail";
+        li.appendChild(document.createTextNode(desc));
+        document.getElementById("results").appendChild(li);
+    }
+</script>
+<!--callback example-->
+<script>
+    let text = "Some text";
+    report("Before defining functions");
+
+    function useless(ninjaCallback) {
+        report("In useless function");
+        return ninjaCallback();
+    }
+
+    function getText() {
+        report("In getText function");
+        return text;
+    }
+
+    report("Before making all the calls");
+    assert(useless(getText) === text,
+        "The useless function works!" + text);
+
+    report("After the calls have been made");
+</script>
+<!--// functions with property-->
+<script>
+    let wieldSword = function () {
+
+    }
+
+    wieldSword.swordType = "Katana";
+    console.log(wieldSword)
+</script>
+
+<!--// functions collection-->
+<script>
+    let store = {
+        nextId: 1,
+        cache: {},
+        add: function (fn) {
+            if (!fn.id) {
+                fn.id = this.nextId++;
+                this.cache[fn.id] = fn;
+                return true;
+            }
+        }
+    }
+
+    function ninja() {
+
+    }
+
+    assert(store.add(ninja),
+        "Function was safely added");
+    assert(!store.add(ninja),
+        "But it was only added once");
+
+
+</script>
+<!--sorting-->
+<script>
+    let values = [0, 3, 2, 5, 7, 4, 8, 1];
+    values.sort(function (value1, value2) {
+        return value1 - value2;
+    })
+</script>
+
+<!--memoization 3.3. example with algorithm of calculations simple(prime) numbers-->
+<script>
+    function isPrime(value) {
+        if (!isPrime.answers) {
+            isPrime.answers = {};
+        }
+
+        if (isPrime.answers[value] !== undefined) {
+            return isPrime.answers[value];
+        }
+
+        let prime = value !== 0 && value !== 1;  // 1 not simple number
+        for (let i = 2; i < value; i++) {
+            if (value % i === 0) {
+                prime = false;
+                break;
+            }
+        }
+        return isPrime.answers[value] = prime;
+    }
+
+    assert(isPrime(5), "5 is prime");
+    assert(isPrime.answers[5], "The answers was cached");
+</script>
+
+<!--3.4 -->
+<script>
+
+    function samurai() {
+        return "samurai here";
+    }
+
+    function ninja() {
+        function hiddenNinja() {
+            return "ninja here";
+        }
+
+        return hiddenNinja();
+    }
+
+
+</script>
+
+
+<!--arrow functions-->
+<script>
+    values.sort((value1, value2) => value1 - value2)
+</script>
+
+
+<!--3.7-->
+<script>
+    function multiMax(first, ...remainingNumbers) {
+        let sorted = remainingNumbers.sort((a, b) => b - a
+        )
+        return first * sorted[0];
+    }
+
+    assert(multiMax(3, 1, 2, 3) == 9,
+        "3*3=9 (First arg, by largest)");
+</script>
+
+<!--start functions -->
+<!--<script>-->
+<!--    let ninja = {};-->
+<!--    let ninjaArray = [];-->
+<!--    ninjaArray.push({});-->
+<!--    ninja.data = {};-->
+
+<!--    console.log(ninja);-->
+<!--    console.log(ninjaArray);-->
+<!--    console.log(ninja.data);-->
+<!--</script>-->
+</body>
+</html>

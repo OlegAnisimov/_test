@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #first {
+            color: blue
+        }
+
+        #second {
+            color: orange
+        }
+    </style>
+</head>
+<body>
+<ul id="first"></ul>
+
+<script>
+    function addMsg(element, message) {
+        let msgElement = document.createElement("li");
+        msgElement.textContent = message;
+        element.appendChild(msgElement);
+    }
+
+    let first = document.getElementById("first");
+    addMsg(first, "Page loading");
+</script>
+
+<ul id="second"></ul>
+
+<script>
+    document.body.addEventListener("mousemove", function () {
+        let second = document.getElementById("second");
+        addMsg(second, "Event: mousemove");
+    })
+
+    document.body.addEventListener("click", function () {
+        let second = document.getElementById("second");
+        addMsg(second, "Event: click");
+    })
+    console.log(first);
+</script>
+</body>
+</html>

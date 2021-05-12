@@ -1,0 +1,7 @@
+function for change value for smallest item
+for example a cell of a table
+
+select_region  - dynamic values
+
+styling current sort th
+asc sort for area - maybe create marker - sorted = boolean
