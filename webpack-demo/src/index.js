@@ -3,7 +3,7 @@ import {HeaderComponent} from "./components/header/Header";
 import {externalService} from "./components/main/external_sevices";
 import {renderRegionSelect} from './components/main/select_region';
 import './components/main/Main';
-import {clearRegionList, renderTableCountries} from './components/main/countriesTableRender';
+import {createTable, clearRegionList, renderTableCountries} from './components/main/countriesTableRender';
 import {sortTableText, sortTableNumber} from './components/main/sortCountiesTable';
 
 const app = document.getElementById('app');
@@ -18,7 +18,8 @@ renderRegionSelect(main);
 //RENDER table country list
 let selectRegion = document.querySelector('select option').textContent;
 console.log(selectRegion)
-renderTableCountries(selectRegion, main, externalService);
+// renderTableCountries(selectRegion, main, externalService);
+
 //TESTS
 // let td_nodeList = document.querySelectorAll('#regionList>tbody>tr>td');
 // let tr_nodeList = document.querySelectorAll('#regionList>tbody>tr');
@@ -32,8 +33,10 @@ renderTableCountries(selectRegion, main, externalService);
 // // const th_clickSort = document.querySelectorAll('#regionList>tbody>tr[id^=country-0]');
 // const th_clickSort = document.querySelector('#regionList>tbody>tr[id^=country-0]').childNodes[5].innerHTML;
 
-
+createTable(main)
 const regionList = document.querySelector('#regionList');
+renderTableCountries(selectRegion, externalService);
+
 
 // ONLOAD
 window.onload = () => {
@@ -42,20 +45,20 @@ window.onload = () => {
 
     selectRegion.addEventListener('change', () => {
             clearRegionList();
-            renderTableCountries(selectRegion.value, main, externalService);
+            renderTableCountries(selectRegion.value, externalService);
         }
     )
-    /*
+
     // Sort table
-    document.querySelector('#regionList>tbody>tr>#th_name').addEventListener('click', () => {
+    document.querySelector('#regionList>thead>tr>#th_name').addEventListener('click', () => {
         sortTableText(0, regionList);
         console.log(document.querySelector('#regionList>tbody>tr>#th_name'));
     });
-    document.querySelector('#regionList>tbody>tr>#th_capital').addEventListener('click', () => sortTableText(1, regionList));
-    document.querySelector('#regionList>tbody>tr>#th_area').addEventListener('click', () => sortTableNumber(2, regionList));
-    document.querySelector('#regionList>tbody>tr>#th_name').addEventListener('click', () => (document.querySelector('#regionList>tbody>tr>#th_name').style = 'color:red'));
+    document.querySelector('#regionList>thead>tr>#th_capital').addEventListener('click', () => sortTableText(1, regionList));
+    document.querySelector('#regionList>thead>tr>#th_area').addEventListener('click', () => sortTableNumber(2, regionList));
+    document.querySelector('#regionList>thead>tr>#th_name').addEventListener('click', () => (document.querySelector('#regionList>tbody>tr>#th_name').style = 'color:red'));
 
-    * */
+
 }
 
 
