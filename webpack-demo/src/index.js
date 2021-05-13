@@ -36,10 +36,12 @@ window.onload = () => {
     const id_sortDownArea = document.querySelector('#sortDownArea');
     const id_sortUpArea = document.querySelector('#sortUpArea');
 
-    id_sortDownName.addEventListener('click', () => sortAscTableText(2, regionList));
-    id_sortUpName.addEventListener('click', () => sortDescTableText(2, regionList));
-    id_sortDownCapital.addEventListener('click', () => sortAscTableText(2, regionList));
-    id_sortUpCapital.addEventListener('click', () => sortDescTableText(2, regionList));
+
+
+    id_sortDownName.addEventListener('click', () => sortAscTableText(0, regionList));
+    id_sortUpName.addEventListener('click', () => sortDescTableText(0, regionList));
+    id_sortDownCapital.addEventListener('click', () => sortAscTableText(1, regionList));
+    id_sortUpCapital.addEventListener('click', () => sortDescTableText(1, regionList));
     id_sortDownArea.addEventListener('click', () => sortAscTableNumber(2, regionList));
     id_sortUpArea.addEventListener('click', () => sortDescTableNumber(2, regionList));
 

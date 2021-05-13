@@ -4,7 +4,6 @@ function sortAscTableText(item, table) {
         .sort((a, b) => a.cells[item].innerText > b.cells[item].innerText ? 1 : -1);
 
     table.tBodies[0].append(...sortedRows);
-    console.log(sortedRows);
 }
 
 function sortDescTableText(item, table) {

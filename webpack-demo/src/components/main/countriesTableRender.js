@@ -4,7 +4,7 @@ function createTable(element) {
 }
 function renderTableCountries(region, data) {
     data = data.getCountryListByRegion(region).sort((itemA, itemB) => itemA.name > itemB.name ? -1 : 1) ;
-    // data = data.getCountryListByRegion(region).sort((itemA, itemB) => itemA.name > itemB.name ? 1 : -1) ;
+    // data = data.getCountryListByRegion(region).sort((itemA, itemB) => itemA.name > itemB.name ? 1 : -1)
     for (let i = 0; i < data.length; i++) {
         document.getElementById('tbody').insertAdjacentHTML('afterbegin', `<tr id=country-${i} >
  <td>${data[i].name}</td>
