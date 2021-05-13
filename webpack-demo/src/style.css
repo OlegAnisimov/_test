@@ -11,3 +11,11 @@
     font-family: 'MyFont';
     background: url('./icon.png');
 }
+th>span{
+    cursor: pointer;
+}
+.flag-cell {
+    width: 200px;
+    text-align: center;
+    border: chartreuse 1px solid;
+}

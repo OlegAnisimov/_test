@@ -1,27 +1,22 @@
-// CREATE TABLE
 function createTable(element) {
-    element.insertAdjacentHTML('beforeend', `<table id="regionList"><thead id="thead"><th id="th_name" class="th_clickSort">name</th> <th id="th_capital" class="th_clickSort">capital</th> <th id="th_area" class="th_clickSort">area</th> <th id="th_flagURL">flagURL</th> <th id="th_region">region</th></thead><tbody id="tbody"></tbody></table>`);
+    element.insertAdjacentHTML('beforeend', `<table id="regionList"><thead id="thead"><th id="th_name" class="th_clickSort">name<span id="sortUpName">&uarr;</span> <span id="sortDownName">&darr;</span> </th> <th id="th_capital" class="th_clickSort">capital<span id="sortUpCapital">&uarr;</span> <span id="sortDownCapital">&darr;</span></th> <th id="th_area" class="th_clickSort">area<span id="sortUpArea">&uarr;</span><span id="sortDownArea">&darr;</span></th> <th id="th_flagURL">flagURL</th> <th id="th_region">region</th></thead><tbody id="tbody"></tbody></table>`);
 
 }
-
-//RENDER
 function renderTableCountries(region, data) {
-    // element.insertAdjacentHTML('beforeend', `<table id="regionList"><thead id="thead"><tr><th id="th_name" class="th_clickSort">name</th> <th id="th_capital" class="th_clickSort">capital</th> <th id="th_area" class="th_clickSort">area</th> <th id="th_flagURL">flagURL</th> <th id="th_region">region</th></tr></thead></table>`);
-
-    for (let i = 0; i < data.getCountryListByRegion(region).length; i++) {
+    data = data.getCountryListByRegion(region).sort((itemA, itemB) => itemA.name > itemB.name ? -1 : 1) ;
+    // data = data.getCountryListByRegion(region).sort((itemA, itemB) => itemA.name > itemB.name ? 1 : -1) ;
+    for (let i = 0; i < data.length; i++) {
         document.getElementById('tbody').insertAdjacentHTML('afterbegin', `<tr id=country-${i} >
- <td>${data.getCountryListByRegion(region)[i].name}</td>
- <td>${data.getCountryListByRegion(region)[i].capital}</td>
- <td>${data.getCountryListByRegion(region)[i].area}</td>
- <td>${data.getCountryListByRegion(region)[i].flagURL}</td>
- <td>${data.getCountryListByRegion(region)[i].region}</td>
+ <td>${data[i].name}</td>
+ <td>${data[i].capital}</td>
+ <td>${data[i].area}</td>
+ <td class="flag-cell"><img src="${data[i].flagURL}" alt="Flag ${data[i].name}"></td>
+ <td>${data[i].region}</td>
  </tr>`)
     }
 };
 
-//CLEAR VALUE
 function clearRegionList() {
-    // let clearHTML = document.getElementById(`regionList`);
     let clearHTML = document.querySelector(`#tbody`);
     clearHTML.innerHTML = "";
 }
