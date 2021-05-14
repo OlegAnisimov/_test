@@ -3,5 +3,9 @@ for example a cell of a table
 
 select_region  - dynamic values
 
-styling current sort th
-asc sort for area - maybe create marker - sorted = boolean
+
+renderRegionSelect - option id
+
+
+сейчас происходит постоянный вызов при коллбэках из листнеров
+получить вызовы стэйт один ра через консты

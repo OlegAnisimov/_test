@@ -1,11 +1,29 @@
-function renderRegionSelect(element) {
-    element.insertAdjacentHTML('afterbegin', `<select id="select_region" class="select_region select">
-        <option id="Europe" value="Europe">Europe</option>
-        <option id="North America" value="North America">North America</option>
-        <option id="South America" value="South America">South America</option>
-        <option id="Asia" value="Asia">Asia</option>
-        <option id="Oceania" value="Oceania">Oceania</option>
+function renderRegionSelect(element, data) {
+    element.insertAdjacentHTML('afterbegin', `<select id="select_region" class="select">       
 </select>`)
+
+    for (let i = 0; i < data.getRegionsList().length; i++) {
+        document.querySelector('#select_region').insertAdjacentHTML('afterbegin', `
+        <option id="region_${data.getRegionsList()[i]}" value="${data.getRegionsList()[i]}">${data.getRegionsList()[i]}</option>
+   
+        `)
+    }
 }
 
-export {renderRegionSelect}
+function renderLanguageSelect(element, data) {
+    element.insertAdjacentHTML('afterbegin', `<select id="select_language" class="select">       
+</select>`)
+
+    for (let i = 0; i < data.getLanguagesList().length; i++) {
+        document.querySelector('#select_language').insertAdjacentHTML('afterbegin', `
+        <option id="language_${data.getLanguagesList()[i]}" value="${data.getLanguagesList()[i]}">${data.getLanguagesList()[i]}</option>
+   
+        `)
+    }
+}
+
+function clearSelectRegion(element) {
+    element.remove();
+}
+
+export {renderRegionSelect, clearSelectRegion, renderLanguageSelect}
